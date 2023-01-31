@@ -7,4 +7,12 @@
     width: 100%;
 
     background-color: #222;
+
+    .explorerWrapper {
+        margin-top: 2em;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        width: 100%;
+    }
 }

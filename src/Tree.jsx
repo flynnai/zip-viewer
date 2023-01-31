@@ -24,7 +24,7 @@ class DirNode {
     }
 }
 
-function Tree({ zip }) {
+function Tree({ zip, setSelectedFilePath }) {
     console.log("ZIP", zip.folder(zip.root));
     const tree = new DirNode("root");
 
@@ -50,10 +50,14 @@ function Tree({ zip }) {
 
     console.log("Tree", tree);
 
+    const handleFileClick = (path) => {
+        setSelectedFilePath(path);
+    };
+
     return (
         <div className={styles.main}>
             {tree.getChildren().map((child) => (
-                <Entry node={child} />
+                <Entry node={child} handleFileClick={handleFileClick} />
             ))}
         </div>
     );

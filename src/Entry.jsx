@@ -4,7 +4,7 @@ import { joinClasses } from "./utils";
 import { ReactComponent as ChevronIcon } from "./chevron-right-icon.svg";
 import { useState } from "react";
 
-function Entry({ node }) {
+function Entry({ node, handleFileClick }) {
     const [isExpanded, setIsExpanded] = useState(false);
     if (node instanceof DirNode) {
         return (
@@ -24,7 +24,11 @@ function Entry({ node }) {
                 </div>
                 <div className={styles.contents}>
                     {node.getChildren().map((child) => (
-                        <Entry node={child} key={child.name} />
+                        <Entry
+                            node={child}
+                            handleFileClick={handleFileClick}
+                            key={child.name}
+                        />
                     ))}
                 </div>
             </div>
@@ -33,7 +37,10 @@ function Entry({ node }) {
         let subDirs = node.name.split("/");
         let filename = subDirs[subDirs.length - 1];
         return (
-            <div className={joinClasses(styles.entryWrapper, styles.file)}>
+            <div
+                className={joinClasses(styles.entryWrapper, styles.file)}
+                onClick={() => handleFileClick(node.name)}
+            >
                 {filename}
             </div>
         );
