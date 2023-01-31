@@ -1,8 +1,10 @@
 .main {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: column nowrap;
     align-items: center;
-    justify-content: center;
+    // justify-content: center;
     height: 100vh;
     width: 100%;
+
+    background-color: #222;
 }

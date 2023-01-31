@@ -1,0 +1,57 @@
+.entryWrapper {
+    width: 100%;
+    border-radius: 5px;
+    background-color: white;
+    box-sizing: border-box;
+
+    &.folder {
+        .label {
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+
+            padding-bottom: 0.2em;
+            .chevron {
+                margin-right: 0.4em;
+                height: 1em;
+                width: 1em;
+                fill: black;
+                transform: rotate(90deg);
+                transition: transform 0.25s;
+            }
+
+            padding: 0.2em;
+            border-radius: 5px;
+            background-color: #eee;
+            transition: background-color 0.2s;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #ddd;
+            }
+        }
+        .contents {
+            margin-left: 1em;
+        }
+        &.hidden {
+            .chevron {
+                transform: rotate(0deg);
+            }
+            .contents {
+                display: none;
+            }
+        }
+    }
+    &.file {
+        padding: 0.2em;
+        border-radius: 5px;
+        background-color: #eee;
+        transition: background-color 0.2s;
+        padding-left: 0.3em;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #ddd;
+        }
+    }
+}

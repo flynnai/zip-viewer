@@ -1,3 +1,4 @@
+import Entry from "./Entry";
 import styles from "./Tree.module.scss";
 
 class DirNode {
@@ -24,28 +25,10 @@ class DirNode {
 }
 
 function Tree({ zip }) {
-    function Entry({ node }) {
-        if (node instanceof DirNode) {
-            return (
-                <div>
-                    {node.name}
-                    <div>
-                        {node.getChildren().map((child) => (
-                            <Entry node={child} key={child.name} />
-                        ))}
-                    </div>
-                </div>
-            );
-        } else {
-            let subDirs = node.name.split("/");
-            let filename = subDirs[subDirs.length - 1];
-            return <div>{filename}</div>;
-        }
-    }
-
     console.log("ZIP", zip.folder(zip.root));
     const tree = new DirNode("root");
 
+    // create a hierarchical, traversable structure from path list
     zip.forEach((relativePath, entry) => {
         if (entry.dir) {
             relativePath = relativePath.slice(0, -1);
@@ -68,10 +51,13 @@ function Tree({ zip }) {
     console.log("Tree", tree);
 
     return (
-        <div>
-            <Entry node={tree} />
+        <div className={styles.main}>
+            {tree.getChildren().map((child) => (
+                <Entry node={child} />
+            ))}
         </div>
     );
 }
 
+export { DirNode };
 export default Tree;
